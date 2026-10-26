@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OpenMindAI — Salvar modelo</title>
+</head>
+<body>
+    <h1>Persistência do modelo</h1>
+    <button id="download">Baixar modelo JSON</button>
+    <pre id="output">Treinando...</pre>
+
+    <script type="module">
+        import { OpenMindTokenizer } from "./tokenizer.js";
+        import { OpenMindNeuralNetwork } from "./neural-network.js";
+        import { OpenMindModelStorage } from "./model-storage.js";
+
+        const texts = [
+            "Olá mundo",
+            "Olá OpenMindAI",
+            "Olá mundo",
+            "Eu sou OpenMindAI",
+            "Eu aprendo palavras",
+            "Eu sou uma inteligência artificial"
+        ];
+
+        const tokenizer = new OpenMindTokenizer();
+        tokenizer.train(texts);
+
+        const network = new OpenMindNeuralNetwork(tokenizer.vocabSize, 16);
+        network.train(tokenizer, texts, 300);
+
+        const original = network.forward(tokenizer.encode("Olá")[0])
+            .probabilities;
+
+        const json = OpenMindModelStorage.save(network, tokenizer);
+
+        const loadedTokenizer = new OpenMindTokenizer();
+        const loadedNetwork = OpenMindModelStorage.load(
+            json,
+            loadedTokenizer,
+            OpenMindNeuralNetwork
+        );
+
+        const restored = loadedNetwork.forward(
+            loadedTokenizer.encode("Olá")[0]
+        ).probabilities;
+
+        const difference = Math.max(
+            ...original.map((value, index) =>
+                Math.abs(value - restored[index])
+            )
+        );
+
+        document.getElementById("output").textContent =
+            "Modelo treinado e recarregado!\n\n" +
+            "Tamanho do JSON: " + json.length + " caracteres\n" +
+            "Vocabulário: " + loadedTokenizer.vocabSize + " tokens\n" +
+            "Maior diferença entre previsões: " + difference + "\n\n" +
+            (difference < 1e-10
+                ? "SUCESSO: os pesos foram restaurados corretamente."
+                : "AVISO: as previsões diferem após o carregamento.");
+
+        document.getElementById("download").onclick = () => {
+            OpenMindModelStorage.download(json);
+        };
+    </script>
+</body>
+</html>

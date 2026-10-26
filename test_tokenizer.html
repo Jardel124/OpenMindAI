@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste do OpenMind Engine</title>
+</head>
+<body>
+    <h1>OpenMind Engine</h1>
+    <pre id="output">Testando...</pre>
+
+    <script type="module">
+        import { OpenMindTokenizer } from "./tokenizer.js";
+
+        const tokenizer = new OpenMindTokenizer();
+
+        tokenizer.train([
+            "Olá, mundo!",
+            "O OpenMindAI está aprendendo.",
+            "Vamos construir nossa própria IA."
+        ]);
+
+        const original = "Olá, mundo! O OpenMindAI está aprendendo.";
+        const ids = tokenizer.encode(original);
+        const decoded = tokenizer.decode(ids);
+
+        document.getElementById("output").textContent =
+            `Original: ${original}\n` +
+            `IDs: ${JSON.stringify(ids)}\n` +
+            `Reconstruído: ${decoded}\n` +
+            `Vocabulário: ${tokenizer.vocabSize} tokens`;
+    </script>
+</body>
+</html>

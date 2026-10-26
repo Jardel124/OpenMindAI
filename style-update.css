@@ -1,0 +1,137 @@
+
+.topbar-action {
+  min-width: 112px;
+}
+
+.profile-text strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.conversation-rename {
+  opacity: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #aaa;
+  width: 27px;
+  height: 27px;
+  flex: 0 0 auto;
+  cursor: pointer;
+  order: 2;
+}
+
+.conversation-item:hover .conversation-rename,
+.conversation-item.active .conversation-rename,
+.conversation-rename:focus-visible {
+  opacity: 1;
+}
+
+.conversation-rename:hover {
+  color: white;
+  background: #444;
+}
+
+.conversation-delete {
+  order: 3;
+}
+
+.conversation-open {
+  order: 1;
+}
+
+.composer-hint[data-network-state="searching"] {
+  color: #a8d7ff;
+}
+
+.composer-hint[data-network-state="success"] {
+  color: #a8e6bd;
+}
+
+.composer-hint[data-network-state="error"] {
+  color: #ffaaaa;
+}
+
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: 14px;
+}
+
+.settings-form label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #eee;
+}
+
+.settings-form input {
+  width: 100%;
+  min-height: 40px;
+  padding: 10px 12px;
+  color: #eee;
+  background: #303030;
+  border: 1px solid #4a4a4a;
+  border-radius: 9px;
+  font: inherit;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+.settings-form input:focus {
+  outline: 2px solid #777;
+  outline-offset: 1px;
+}
+
+.settings-note {
+  margin: 0 !important;
+  font-size: 11px !important;
+  color: #888 !important;
+}
+
+.settings-form .modal-actions {
+  margin-top: 10px;
+}
+
+.settings-save {
+  width: auto;
+  margin: 0;
+}
+
+.user-message-label {
+  text-align: right;
+  color: #aaa;
+  font-size: 10px;
+  margin: 0 2px 4px;
+}
+
+#toast {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  background: #383838;
+  border: 1px solid #555;
+  color: #eee;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 12px;
+  box-shadow: 0 8px 30px #0005;
+}
+
+#toast[hidden] {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .topbar-action {
+    min-width: auto;
+    max-width: 150px;
+  }
+
+  .conversation-rename {
+    opacity: 1;
+  }
+}

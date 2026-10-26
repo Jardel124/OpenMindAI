@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OpenMindAI — Geração de texto</title>
+</head>
+<body>
+    <h1>OpenMindAI — Geração de texto</h1>
+    <button id="generate">Gerar novamente</button>
+    <pre id="output">Treinando o modelo...</pre>
+
+    <script type="module">
+        import { OpenMindTokenizer } from "./tokenizer.js";
+        import { OpenMindNeuralNetwork } from "./neural-network.js";
+        import { generateText } from "./generate.js";
+
+        const texts = [
+            "Olá mundo",
+            "Olá OpenMindAI",
+            "Olá mundo",
+            "Eu sou OpenMindAI",
+            "Eu aprendo palavras",
+            "Eu sou uma inteligência artificial"
+        ];
+
+        const tokenizer = new OpenMindTokenizer();
+        tokenizer.train(texts);
+
+        const network = new OpenMindNeuralNetwork(tokenizer.vocabSize, 16);
+        network.train(tokenizer, texts, 300);
+
+        const output = document.getElementById("output");
+
+        function generate() {
+            output.textContent =
+                "Modelo treinado!\n\n" +
+                "Entrada: Olá\n" +
+                "Saída: " + generateText(network, tokenizer, "Olá", 12);
+        }
+
+        document.getElementById("generate").addEventListener("click", generate);
+
+        generate();
+    </script>
+</body>
+</html>

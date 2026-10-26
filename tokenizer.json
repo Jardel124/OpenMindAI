@@ -1,0 +1,21 @@
+{
+  "<PAD>": 0,
+  "<UNK>": 1,
+  "<BOS>": 2,
+  "<EOS>": 3,
+  "olá": 4,
+  ",": 5,
+  "mundo": 6,
+  "!": 7,
+  "o": 8,
+  "openmindai": 9,
+  "está": 10,
+  "aprendendo": 11,
+  ".": 12,
+  "esta": 13,
+  "é": 14,
+  "nossa": 15,
+  "primeira": 16,
+  "inteligência": 17,
+  "artificial": 18
+}

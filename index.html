@@ -1,0 +1,123 @@
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#212121">
+  <title>OpenMindAI</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./style-update.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">◈</div>
+          <span>OpenMindAI</span>
+        </div>
+        <button class="icon-button sidebar-toggle" id="closeSidebar" aria-label="Fechar menu" title="Fechar menu">☰</button>
+      </div>
+
+      <button class="new-chat-button" id="newChat">
+        <span class="plus">＋</span>
+        <span>Nova conversa</span>
+      </button>
+
+      <div class="history-heading">Recentes</div>
+      <nav class="conversation-list" id="conversationList" aria-label="Histórico de conversas"></nav>
+
+      <div class="sidebar-bottom">
+        <div class="profile-avatar">O</div>
+        <div class="profile-text">
+          <strong>OpenMindAI</strong>
+          <span>Protótipo local</span>
+        </div>
+        <button class="icon-button" id="clearHistory" title="Apagar todo o histórico" aria-label="Apagar todo o histórico">⋯</button>
+      </div>
+    </aside>
+
+    <div class="mobile-scrim" id="mobileScrim"></div>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" id="openSidebar" aria-label="Abrir menu" title="Abrir menu">☰</button>
+        <div class="topbar-title">OpenMindAI <span class="status-dot"></span></div>
+        <button class="topbar-action" id="aboutButton">Sobre</button>
+      </header>
+
+      <section class="chat-scroll" id="chatScroll">
+        <div class="welcome" id="welcome">
+          <div class="welcome-mark">◈</div>
+          <h1>O que vamos explorar hoje?</h1>
+          <p>Uma mente aberta começa com uma boa pergunta.</p>
+
+          <div class="suggestions">
+            <button class="suggestion" data-prompt="Explique como funciona uma inteligência artificial.">
+              <span class="suggestion-icon">✳</span>
+              <span><strong>Entender IA</strong><small>Como funciona uma inteligência artificial?</small></span>
+            </button>
+            <button class="suggestion" data-prompt="Me dê ideias para um projeto de programação.">
+              <span class="suggestion-icon">⌘</span>
+              <span><strong>Programar algo</strong><small>Ideias para um novo projeto</small></span>
+            </button>
+            <button class="suggestion" data-prompt="Me ajude a aprender algo novo hoje.">
+              <span class="suggestion-icon">↗</span>
+              <span><strong>Aprender</strong><small>Descobrir um assunto novo</small></span>
+            </button>
+            <button class="suggestion" data-prompt="Me ajude a resolver um problema passo a passo.">
+              <span class="suggestion-icon">◇</span>
+              <span><strong>Resolver um problema</strong><small>Organizar uma solução por etapas</small></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="messages" id="messages" aria-live="polite"></div>
+      </section>
+
+      <footer class="composer-area">
+        <form class="composer" id="composer">
+          <textarea id="messageInput" rows="1" placeholder="Envie uma mensagem ao OpenMindAI..." aria-label="Mensagem" maxlength="12000"></textarea>
+
+          <div class="composer-bottom">
+            <div class="composer-hint">
+              <span class="sparkle">✳</span>
+              Motor neural experimental · internet opcional
+            </div>
+            <button class="send-button" id="sendButton" type="submit" aria-label="Enviar mensagem" title="Enviar mensagem">
+              <span>↑</span>
+            </button>
+          </div>
+        </form>
+        <p class="disclaimer">O OpenMindAI ainda está em desenvolvimento. As respostas atuais podem conter erros.</p>
+      </footer>
+    </main>
+  </div>
+
+  <dialog class="modal" id="aboutDialog">
+    <div class="modal-header">
+      <h2>Sobre o OpenMindAI</h2>
+      <button class="icon-button" id="closeAbout" aria-label="Fechar">✕</button>
+    </div>
+    <p>O OpenMindAI é um projeto experimental criado com HTML, CSS e JavaScript.</p>
+    <p>As conversas são salvas neste navegador. A pesquisa na internet depende da conexão e dos serviços externos utilizados.</p>
+    <button class="modal-primary" id="aboutOk">Entendi</button>
+  </dialog>
+
+  <dialog class="modal" id="confirmDialog">
+    <div class="modal-header">
+      <h2>Apagar histórico?</h2>
+      <button class="icon-button" id="cancelClear" aria-label="Cancelar">✕</button>
+    </div>
+    <p>Isso remove todas as conversas salvas neste navegador. Esta ação não pode ser desfeita.</p>
+    <div class="modal-actions">
+      <button class="modal-secondary" id="cancelClear2">Cancelar</button>
+      <button class="modal-danger" id="confirmClear">Apagar tudo</button>
+    </div>
+  </dialog>
+
+  <script src="./script.js"></script>
+  <script src="./interface-update.js"></script>
+</body>
+</html>
